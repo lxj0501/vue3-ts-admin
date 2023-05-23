@@ -1,0 +1,21 @@
+<script setup lang="ts">
+import { useGlobalSetting } from '@/hooks/setting';
+import useMenuSetting from '@/hooks/setting/useMenuSetting';
+
+const { title } = useGlobalSetting();
+const { isMenuCollapse } = useMenuSetting();
+</script>
+
+<template>
+  <div class="h-[48px] p-[10px] flex items-center">
+    <img src="../assets/vue.svg" alt="" class="h-full" />
+    <div
+      class="ml-2 text-white text-[16px] font-[700] overflow-hidden text-ellipsis whitespace-nowrap"
+      v-show="!isMenuCollapse"
+    >
+      {{ title }}
+    </div>
+  </div>
+</template>
+
+<style lang="scss"></style>
