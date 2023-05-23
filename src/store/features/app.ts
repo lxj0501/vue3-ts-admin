@@ -5,11 +5,10 @@ interface AppState {
 }
 
 export const useAppStore = defineStore('app', {
-  state(): AppState {
-    return {
-      menuSetting: { isCollapse: false },
-    };
-  },
+  state: (): AppState => ({
+    menuSetting: { isCollapse: false },
+  }),
+
   getters: {
     getMenuSetting(state): MenuSetting {
       return state.menuSetting;

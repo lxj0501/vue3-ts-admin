@@ -8,7 +8,7 @@ const { isMenuCollapse } = useMenuSetting();
 
 <template>
   <div class="h-[48px] p-[10px] flex items-center">
-    <img src="../assets/vue.svg" alt="" class="h-full" />
+    <img src="@/assets/images/vue.svg" alt="" class="w-[28px] h-[28px]" />
     <div
       class="ml-2 text-white text-[16px] font-[700] overflow-hidden text-ellipsis whitespace-nowrap"
       v-show="!isMenuCollapse"

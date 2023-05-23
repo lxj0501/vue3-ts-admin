@@ -2,7 +2,8 @@ import '@/design/index.scss';
 import 'ant-design-vue/dist/antd.css';
 import { createApp } from 'vue';
 import App from './App.vue';
-import { setupRouter } from './router';
+import { router, setupRouter } from './router';
+import { setupRouterGuard } from './router/guard';
 import { setupStore } from './store';
 
 function bootstrap() {
@@ -13,6 +14,9 @@ function bootstrap() {
 
   // 配置路由
   setupRouter(app);
+
+  // 路由守卫
+  setupRouterGuard(router);
 
   app.mount('#app');
 }

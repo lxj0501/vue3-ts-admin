@@ -1,6 +1,6 @@
 {
-  "name": "xvuets",
-  "version": "1.0.1",
+  "name": "vuets-temp",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "type": "module",
@@ -10,7 +10,7 @@
   "keywords": [],
   "license": "ISC",
   "bin": {
-    "xvuets": "index.js"
+    "vuets-temp": "index.js"
   },
   "dependencies": {
     "chalk": "^5.2.0",

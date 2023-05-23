@@ -10,17 +10,6 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AppLogo: typeof import('./src/components/AppLogo.vue')['default']
-    ElAside: typeof import('element-plus/es')['ElAside']
-    ElCol: typeof import('element-plus/es')['ElCol']
-    ElContainer: typeof import('element-plus/es')['ElContainer']
-    ElHeader: typeof import('element-plus/es')['ElHeader']
-    ElIcon: typeof import('element-plus/es')['ElIcon']
-    ElMain: typeof import('element-plus/es')['ElMain']
-    ElMenu: typeof import('element-plus/es')['ElMenu']
-    ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
-    ElMenuItemGroup: typeof import('element-plus/es')['ElMenuItemGroup']
-    ElRow: typeof import('element-plus/es')['ElRow']
-    ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     MenuTrigger: typeof import('./src/components/MenuTrigger.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
