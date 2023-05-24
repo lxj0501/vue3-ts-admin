@@ -1,3 +1,5 @@
 export function getAppEnvConfig() {
-  return import.meta.env as unknown as GlobalEnvConfig;
+  const envConfig = import.meta.env;
+  envConfig.VITE_USE_MOCK = envConfig.VITE_USE_MOCK === 'true';
+  return envConfig as unknown as GlobalEnvConfig;
 }

@@ -1,0 +1,3 @@
+interface RequestOptions {
+  useMock?: boolean;
+}

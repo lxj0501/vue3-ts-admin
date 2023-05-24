@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import axios from 'axios';
 
 interface UserState {
   userInfo: Nullable<UserInfo>;
@@ -14,8 +15,11 @@ export const useUserStore = defineStore('user', {
     setToken(token: string) {
       this.token = token;
     },
-    async login(loginParams: LoginParams) {
-      console.log(loginParams);
+    async login(_: LoginParams) {
+      // console.log(loginParams);
+      const res = await axios.request({ url: '/api/get' });
+
+      console.log(res);
     },
   },
 });
