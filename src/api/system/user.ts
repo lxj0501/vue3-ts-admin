@@ -1,1 +1,3 @@
-export const API_LOGIN = () => {};
+export const API_LOGIN = () => {
+  console.log(123);
+};

@@ -30,7 +30,9 @@ export abstract class ServiceHooks {
 }
 
 export const serviceHooks: ServiceHooks = {
-  beforeRequestHook() {},
+  beforeRequestHook() {
+    console.log(123);
+  },
   requestInterceptor(config) {
     return config;
   },
