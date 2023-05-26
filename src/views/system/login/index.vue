@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useGlobalSetting } from '@/hooks/setting';
-import { Input, Form, FormItem, InputPassword, Button } from 'ant-design-vue';
-import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
-import { reactive } from 'vue';
-import { useUserStore } from '@/store/features/user';
+import { useGlobalSetting } from "@/hooks/setting";
+import { Input, Form, FormItem, InputPassword, Button } from "ant-design-vue";
+import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
+import { reactive } from "vue";
+import { useUserStore } from "@/store/features/user";
 
 interface LoginFormState {
   username: string;
@@ -11,7 +11,7 @@ interface LoginFormState {
 }
 
 const { title } = useGlobalSetting();
-const loginFormState = reactive<LoginFormState>({ username: '', password: '' });
+const loginFormState = reactive<LoginFormState>({ username: "", password: "" });
 const userStore = useUserStore();
 
 const onFinish = async (e: LoginFormState) => {

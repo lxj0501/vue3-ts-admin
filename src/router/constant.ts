@@ -1,1 +1,1 @@
-export const LAYOUT = () => import('@/layouts/index.vue');
+export const LAYOUT = () => import("@/layouts/index.vue");

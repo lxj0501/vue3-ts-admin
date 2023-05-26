@@ -1,10 +1,10 @@
-import '@/design/index.scss';
-import 'ant-design-vue/dist/antd.css';
-import { createApp } from 'vue';
-import App from './App.vue';
-import { router, setupRouter } from './router';
-import { setupRouterGuard } from './router/guard';
-import { setupStore } from './store';
+import "@/design/index.scss";
+import "ant-design-vue/dist/antd.css";
+import { createApp } from "vue";
+import App from "./App.vue";
+import { router, setupRouter } from "./router";
+import { setupRouterGuard } from "./router/guard";
+import { setupStore } from "./store";
 
 function bootstrap() {
   const app = createApp(App);
@@ -18,7 +18,7 @@ function bootstrap() {
   // 路由守卫
   setupRouterGuard(router);
 
-  app.mount('#app');
+  app.mount("#app");
 }
 
 bootstrap();

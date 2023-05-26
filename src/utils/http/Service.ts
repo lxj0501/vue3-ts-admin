@@ -2,20 +2,20 @@ import axios, {
   AxiosInstance,
   AxiosRequestConfig,
   CreateAxiosDefaults,
-} from 'axios';
-import { ServiceHooks } from './ServiceHooks';
+} from "axios";
+import { ServiceHooks } from "./ServiceHooks";
 
-interface CreateServiceConfig extends CreateAxiosDefaults {
+export interface ServiceConfig extends CreateAxiosDefaults {
   serviceHooks: ServiceHooks;
   requestOptions?: RequestOptions;
 }
 
 export class RequestService {
   private axiosInstance: AxiosInstance;
-  private readonly config: CreateServiceConfig;
+  private readonly serviceConfig: ServiceConfig;
 
-  constructor(config: CreateServiceConfig) {
-    this.config = config;
+  constructor(config: ServiceConfig) {
+    this.serviceConfig = config;
     this.axiosInstance = axios.create(config);
     this.setupInterceptors();
   }
@@ -28,7 +28,7 @@ export class RequestService {
         responseInterceptor,
         responseInterceptorErrorCatch,
       },
-    } = this.config;
+    } = this.serviceConfig;
     this.axiosInstance.interceptors.request.use(
       requestInterceptor,
       requestInterceptorErrorCatch
@@ -40,18 +40,27 @@ export class RequestService {
     );
   }
 
-  get<T = any>(
-    config: AxiosRequestConfig,
-    options: RequestOptions
-  ): Promise<T> {
-    return this.request({ ...config, method: 'GET' }, options);
+  get<T>(config: AxiosRequestConfig, options?: RequestOptions): Promise<T> {
+    return this.request<T>({ ...config, method: "GET" }, options);
   }
 
-  request<T = any>(
+  post<T>(config: AxiosRequestConfig, options?: RequestOptions): Promise<T> {
+    return this.request<T>({ ...config, method: "POST" }, options);
+  }
+
+  request<T>(
     config: AxiosRequestConfig,
-    options: RequestOptions
+    options: RequestOptions = {}
   ): Promise<T> {
-    console.log(options);
-    return this.axiosInstance.request(config);
+    const {
+      serviceHooks: { beforeRequestHook },
+    } = this.serviceConfig;
+    const serviceConfig = beforeRequestHook({
+      ...this.serviceConfig,
+      ...config,
+      ...options,
+    });
+
+    return this.axiosInstance.request(serviceConfig as any);
   }
 }

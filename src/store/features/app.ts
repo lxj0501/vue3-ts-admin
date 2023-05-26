@@ -1,10 +1,10 @@
-import { defineStore } from 'pinia';
+import { defineStore } from "pinia";
 
 interface AppState {
   menuSetting: MenuSetting;
 }
 
-export const useAppStore = defineStore('app', {
+export const useAppStore = defineStore("app", {
   state: (): AppState => ({
     menuSetting: { isCollapse: false },
   }),

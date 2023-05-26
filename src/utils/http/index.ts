@@ -1,6 +1,6 @@
-import { getAppEnvConfig } from '../env';
-import { RequestService } from './Service';
-import { serviceHooks } from './ServiceHooks';
+import { getAppEnvConfig } from "../env";
+import { RequestService } from "./Service";
+import { serviceHooks } from "./ServiceHooks";
 
 function createService() {
   const { VITE_USE_MOCK } = getAppEnvConfig();

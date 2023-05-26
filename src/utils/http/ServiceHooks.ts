@@ -1,10 +1,12 @@
-import { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import { AxiosResponse, InternalAxiosRequestConfig } from "axios";
+import { getAppEnvConfig } from "../env";
+import { ServiceConfig } from "./Service";
 
-export abstract class ServiceHooks {
+export interface ServiceHooks {
   /**
    * @description: 请求之前调用
    */
-  beforeRequestHook?: () => void;
+  beforeRequestHook: (serviceConfig: ServiceConfig) => ServiceConfig;
 
   /**
    * @description: 请求拦截器
@@ -30,8 +32,14 @@ export abstract class ServiceHooks {
 }
 
 export const serviceHooks: ServiceHooks = {
-  beforeRequestHook() {
-    console.log(123);
+  beforeRequestHook(serviceConfig: ServiceConfig) {
+    const { VITE_BASE_URL, VITE_MOCK_BASE } = getAppEnvConfig();
+    const { requestOptions: { useMock } = {} } = serviceConfig;
+
+    serviceConfig.url =
+      (useMock ? VITE_MOCK_BASE : VITE_BASE_URL) + serviceConfig.url;
+
+    return serviceConfig;
   },
   requestInterceptor(config) {
     return config;
