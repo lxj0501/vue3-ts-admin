@@ -4,7 +4,10 @@ export async function setupProdMockServer() {
   const modules: Record<string, any> = import.meta.glob('./**/*.ts', {
     eager: true
   })
-  const defaults = Object.keys(modules).map((key) => modules[key].default)
+
+  const defaults = Object.keys(modules)
+    .map((key) => modules[key].default)
+    .filter((item) => item)
 
   const mockList: any[] = []
   defaults.forEach((item: any) => {
