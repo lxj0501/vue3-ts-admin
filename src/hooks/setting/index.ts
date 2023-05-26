@@ -1,8 +1,8 @@
-import { getAppEnvConfig } from "@/utils/env";
+import { getAppEnvConfig } from '@/utils/env'
 
 export const useGlobalSetting = () => {
-  const { VITE_APP_TITLE } = getAppEnvConfig();
+  const { VITE_APP_TITLE } = getAppEnvConfig()
   return {
-    title: VITE_APP_TITLE,
-  };
-};
+    title: VITE_APP_TITLE
+  }
+}

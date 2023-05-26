@@ -1,10 +1,10 @@
-import type { App } from "vue";
-import { createPinia } from "pinia";
+import type { App } from 'vue'
+import { createPinia } from 'pinia'
 
-const store = createPinia();
+const store = createPinia()
 
 export const setupStore = (app: App) => {
-  app.use(store);
-};
+  app.use(store)
+}
 
-export default store;
+export default store

@@ -1,15 +1,15 @@
-import { ResultCodeEnum } from "@/enums/httpEnum";
+import { ResultCodeEnum } from '@/enums/httpEnum'
 
 export function createSuccessResult<T>(result: T) {
   return {
     code: ResultCodeEnum.SUCCESS,
-    result,
-  };
+    result
+  }
 }
 
-export function createErrorResult(message = "Request failed") {
+export function createErrorResult(message = 'Request failed') {
   return {
     code: ResultCodeEnum.ERROR,
-    message,
-  };
+    message
+  }
 }

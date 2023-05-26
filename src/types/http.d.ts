@@ -1,3 +1,3 @@
 interface RequestOptions {
-  useMock?: boolean;
+  useMock?: boolean
 }

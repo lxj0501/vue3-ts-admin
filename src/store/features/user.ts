@@ -1,25 +1,25 @@
-import { API_LOGIN } from "@/api/system/user";
-import { defineStore } from "pinia";
+import { API_LOGIN } from '@/api/system/user'
+import { defineStore } from 'pinia'
 
 interface UserState {
-  userInfo: Nullable<UserInfo>;
-  token: Nullable<string>;
+  userInfo: Nullable<UserInfo>
+  token: Nullable<string>
 }
 
-export const useUserStore = defineStore("user", {
+export const useUserStore = defineStore('user', {
   state: (): UserState => ({
     userInfo: null,
-    token: null,
+    token: null
   }),
   actions: {
     setToken(token: string) {
-      this.token = token;
+      this.token = token
     },
     async login(loginParams: LoginParams) {
       // console.log(loginParams);
-      const res = await API_LOGIN(loginParams);
+      const res = await API_LOGIN(loginParams)
 
-      console.log(res);
-    },
-  },
-});
+      console.log(res)
+    }
+  }
+})

@@ -1,4 +1,4 @@
-import { Router } from "vue-router";
+import { Router } from 'vue-router'
 
 export const createPermissionGuard = (_: Router) => {
   // const userStore = useUserStore();
@@ -29,4 +29,4 @@ export const createPermissionGuard = (_: Router) => {
   //   }
   //   next();
   // });
-};
+}

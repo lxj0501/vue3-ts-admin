@@ -5,14 +5,14 @@
 // Read more: https://github.com/vuejs/core/pull/3399
 import '@vue/runtime-core'
 
-export {};
+export {}
 
-declare module "@vue/runtime-core" {
+declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    AppLogo: typeof import("./src/components/AppLogo.vue")["default"];
-    HelloWorld: typeof import("./src/components/HelloWorld.vue")["default"];
-    MenuTrigger: typeof import("./src/components/MenuTrigger.vue")["default"];
-    RouterLink: typeof import("vue-router")["RouterLink"];
-    RouterView: typeof import("vue-router")["RouterView"];
+    AppLogo: typeof import('./src/components/AppLogo.vue')['default']
+    HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    MenuTrigger: typeof import('./src/components/MenuTrigger.vue')['default']
+    RouterLink: typeof import('vue-router')['RouterLink']
+    RouterView: typeof import('vue-router')['RouterView']
   }
 }

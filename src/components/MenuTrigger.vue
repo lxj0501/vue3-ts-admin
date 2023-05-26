@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons-vue";
-import useMenuSetting from "@/hooks/setting/useMenuSetting";
-const { isMenuCollapse, toggleMenu } = useMenuSetting();
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons-vue'
+import useMenuSetting from '@/hooks/setting/useMenuSetting'
+const { isMenuCollapse, toggleMenu } = useMenuSetting()
 </script>
 
 <template>

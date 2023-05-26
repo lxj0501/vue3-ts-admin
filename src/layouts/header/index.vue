@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { LayoutHeader } from "ant-design-vue";
-import MenuTrigger from "@/components/MenuTrigger.vue";
+import { LayoutHeader } from 'ant-design-vue'
+import MenuTrigger from '@/components/MenuTrigger.vue'
 </script>
 
 <template>

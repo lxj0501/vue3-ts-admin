@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useGlobalSetting } from "@/hooks/setting";
-import useMenuSetting from "@/hooks/setting/useMenuSetting";
+import { useGlobalSetting } from '@/hooks/setting'
+import useMenuSetting from '@/hooks/setting/useMenuSetting'
 
-const { title } = useGlobalSetting();
-const { isMenuCollapse } = useMenuSetting();
+const { title } = useGlobalSetting()
+const { isMenuCollapse } = useMenuSetting()
 </script>
 
 <template>
