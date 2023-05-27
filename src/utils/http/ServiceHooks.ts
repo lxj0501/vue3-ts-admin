@@ -1,9 +1,9 @@
+import { ResultCodeEnum } from '@/enums/httpEnum'
+import { message } from 'ant-design-vue'
 import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { getToken } from '../auth'
 import { getAppEnvConfig } from '../env'
 import { ServiceConfig } from './Service'
-import { message } from 'ant-design-vue'
-import { ResultCodeEnum } from '@/enums/httpEnum'
 
 export interface ServiceHooks {
   /**
@@ -93,7 +93,7 @@ export const serviceHooks: ServiceHooks = {
       throw new Error('请求出错')
     }
 
-    const { code, message: msg, result, type } = data
+    const { code, message: msg, result } = data
     const isSuccess = code === ResultCodeEnum.SUCCESS
     if (isSuccess) {
       console.log('success')

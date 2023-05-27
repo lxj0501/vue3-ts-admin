@@ -5,12 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build",
+    "build": "pnpm check && vite build",
     "preview": "pnpm build && vite preview",
     "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix",
     "format": "prettier --write \"./**/*.{html,vue,ts,js,json,md}\"",
     "prepare": "husky install",
-    "check": "pnpm format && pnpm lint"
+    "check": "vue-tsc && pnpm format && pnpm lint"
   },
   "dependencies": {
     "@ant-design/icons-vue": "^6.1.0",
