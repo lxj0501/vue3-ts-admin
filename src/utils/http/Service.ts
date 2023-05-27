@@ -1,13 +1,15 @@
 import axios, {
   AxiosInstance,
   AxiosRequestConfig,
-  CreateAxiosDefaults
+  AxiosResponse,
+  CreateAxiosDefaults,
+  InternalAxiosRequestConfig
 } from 'axios'
 import { ServiceHooks } from './ServiceHooks'
 
 export interface ServiceConfig extends CreateAxiosDefaults {
   serviceHooks: ServiceHooks
-  requestOptions?: RequestOptions
+  requestOptions: RequestOptions
 }
 
 export class RequestService {
@@ -29,10 +31,12 @@ export class RequestService {
         responseInterceptorErrorCatch
       }
     } = this.serviceConfig
-    this.axiosInstance.interceptors.request.use(
-      requestInterceptor,
-      requestInterceptorErrorCatch
-    )
+
+    this.axiosInstance.interceptors.request.use((config) => {
+      return requestInterceptor(
+        config as ServiceConfig
+      ) as InternalAxiosRequestConfig
+    }, requestInterceptorErrorCatch)
 
     this.axiosInstance.interceptors.response.use(
       responseInterceptor,
@@ -48,19 +52,22 @@ export class RequestService {
     return this.request<T>({ ...config, method: 'POST' }, options)
   }
 
-  request<T>(
+  async request<T>(
     config: AxiosRequestConfig,
     options: RequestOptions = {}
   ): Promise<T> {
     const {
-      serviceHooks: { beforeRequestHook }
+      serviceHooks: { beforeRequestHook, handleResponseHook }
     } = this.serviceConfig
-    const serviceConfig = beforeRequestHook({
-      ...this.serviceConfig,
-      ...config,
-      ...options
-    })
+    const mergeConfig = beforeRequestHook(this.serviceConfig, config, options)
 
-    return this.axiosInstance.request(serviceConfig as any)
+    try {
+      const res = await this.axiosInstance.request<any, AxiosResponse<Result>>(
+        mergeConfig as any
+      )
+      return handleResponseHook(res, mergeConfig) as T
+    } catch (error) {
+      return Promise.reject(error)
+    }
   }
 }

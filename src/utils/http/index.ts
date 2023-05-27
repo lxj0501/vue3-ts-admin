@@ -9,7 +9,10 @@ function createService() {
     timeout: 10000,
     serviceHooks,
     requestOptions: {
-      useMock: VITE_USE_MOCK
+      useMock: VITE_USE_MOCK,
+      withToken: true,
+      useNativeResponse: false,
+      useHandledData: true
     }
   })
 }
