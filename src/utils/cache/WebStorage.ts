@@ -27,7 +27,7 @@ export class WebStorage implements IWebStorage {
     return this.storage.getItem(key)
   }
 
-  set(key: string, value: string, expire?: number) {
+  set(key: string, value: string) {
     key = this.mergeKey(key)
     this.storage.setItem(key, value)
   }
