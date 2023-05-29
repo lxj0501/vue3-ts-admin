@@ -1,4 +1,5 @@
 import { API_LOGIN } from '@/api/system/user'
+import { setToken } from '@/utils/auth'
 import { defineStore } from 'pinia'
 
 interface UserState {
@@ -14,12 +15,15 @@ export const useUserStore = defineStore('user', {
   actions: {
     setToken(token: string) {
       this.token = token
+      setToken(token)
     },
     async login(loginParams: LoginParams) {
-      // console.log(loginParams);
-      const res = await API_LOGIN(loginParams)
-
-      console.log(res)
+      try {
+        const { token } = await API_LOGIN(loginParams)
+        this.setToken(token)
+      } catch (error) {
+        return Promise.reject(error)
+      }
     }
   }
 })

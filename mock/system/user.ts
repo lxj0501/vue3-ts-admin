@@ -4,11 +4,13 @@ import { MockMethod } from 'vite-plugin-mock'
 const fakeUserList = [
   {
     username: 'admin',
-    password: 'admin'
+    password: 'admin',
+    token: 'token1'
   },
   {
     username: 'user1',
-    password: '123456'
+    password: '123456',
+    token: 'token2'
   }
 ]
 
@@ -25,7 +27,8 @@ export default [
       if (!user) {
         return createErrorResult('账号或密码错误！')
       }
-      return createSuccessResult(user)
+      const { username: _username, token } = user
+      return createSuccessResult({ _username, token })
     }
   }
 ] as MockMethod[]
