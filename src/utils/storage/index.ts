@@ -3,10 +3,12 @@ import pkg from '../../../package.json'
 import { getStoragePrefix } from '../env'
 import { WebStorage as Storage } from './WebStorage'
 
+const { storage, defaultCacheTime } = projectSetting.storageSetting
+
 const WebStorage = new Storage({
-  storage: sessionStorage,
+  storage,
   prefix: `${getStoragePrefix()}${pkg.version}__`,
-  cacheTime: projectSetting.defaultCacheTime
+  cacheTime: defaultCacheTime
 })
 
 export default WebStorage

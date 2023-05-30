@@ -2,7 +2,9 @@
 import { useGlobalSetting } from '@/hooks/setting'
 import useMenuSetting from '@/hooks/setting/useMenuSetting'
 
-const { title, logo } = useGlobalSetting()
+const {
+  appSetting: { title, logo }
+} = useGlobalSetting()
 const { isMenuCollapse } = useMenuSetting()
 </script>
 

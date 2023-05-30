@@ -9,7 +9,10 @@ export function getAppEnvConfig() {
 }
 
 export function getStoragePrefix() {
-  const { title, MODE } = useGlobalSetting()
+  const {
+    appSetting: { title },
+    MODE
+  } = useGlobalSetting()
   return `${title.replace(/\s/, '_')}__${MODE}__`
 }
 

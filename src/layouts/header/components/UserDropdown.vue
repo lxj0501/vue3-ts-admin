@@ -4,7 +4,9 @@ import { useUserStore } from '@/store/features/user'
 import { Dropdown, Menu, MenuItem } from 'ant-design-vue'
 import { MenuClickEventHandler } from 'ant-design-vue/lib/menu/src/interface'
 const { userInfo, logout } = useUserStore()
-const { defaultAvatar } = useGlobalSetting()
+const {
+  userSetting: { defaultAvatar }
+} = useGlobalSetting()
 
 const handleMenuClick: MenuClickEventHandler = (e) => {
   switch (e.key) {

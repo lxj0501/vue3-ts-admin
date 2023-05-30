@@ -10,7 +10,9 @@ interface LoginFormState {
   password: string
 }
 
-const { title, logo } = useGlobalSetting()
+const {
+  appSetting: { title, logo }
+} = useGlobalSetting()
 
 const loginFormState = reactive<LoginFormState>({ username: '', password: '' })
 const userStore = useUserStore()
