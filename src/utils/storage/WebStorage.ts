@@ -1,6 +1,7 @@
 interface CreateWebStorageOptions {
   storage: Storage
   prefix: string
+  cacheTime: number
 }
 
 interface IWebStorage extends CreateWebStorageOptions {
@@ -12,28 +13,45 @@ interface IWebStorage extends CreateWebStorageOptions {
 export class WebStorage implements IWebStorage {
   storage: Storage
   prefix: string
+  cacheTime: number
 
-  constructor({ storage, prefix }: CreateWebStorageOptions) {
+  constructor({ storage, prefix, cacheTime }: CreateWebStorageOptions) {
     this.storage = storage
     this.prefix = prefix
+    this.cacheTime = cacheTime
   }
 
   private mergeKey(key: string) {
     return (this.prefix + key).toUpperCase()
   }
 
-  get(key: string) {
-    key = this.mergeKey(key)
-    return this.storage.getItem(key)
+  get(key: string, def: any = null): any {
+    const value = this.storage.getItem(this.mergeKey(key))
+    if (value) {
+      try {
+        const { data, expireAt } = JSON.parse(value)
+        if (expireAt === null || expireAt >= Date.now()) {
+          return data
+        }
+        this.remove(key)
+      } catch (error) {
+        return def
+      }
+    }
+
+    return def
   }
 
-  set(key: string, value: string) {
-    key = this.mergeKey(key)
-    this.storage.setItem(key, value)
+  set(key: string, value: any, cacheTime: number | null = this.cacheTime) {
+    const stringifyData = JSON.stringify({
+      data: value,
+      expireAt:
+        cacheTime === null ? null : new Date().getTime() + cacheTime * 1000
+    })
+    this.storage.setItem(this.mergeKey(key), stringifyData)
   }
 
   remove(key: string) {
-    key = this.mergeKey(key)
-    this.storage.removeItem(key)
+    this.storage.removeItem(this.mergeKey(key))
   }
 }

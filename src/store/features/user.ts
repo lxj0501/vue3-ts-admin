@@ -20,9 +20,9 @@ export const useUserStore = defineStore('user', {
       this.userInfo = null
       this.token = null
     },
-    setToken(token: string) {
+    setToken(token: string | undefined) {
       this.token = token
-      setToken(token)
+      token ? setToken(token) : removeToken()
     },
     async login(loginParams: LoginParams) {
       try {
@@ -46,7 +46,7 @@ export const useUserStore = defineStore('user', {
     async logout() {
       try {
         await API_LOGOUT()
-        removeToken()
+        this.setToken(undefined)
         this.resetState()
         await router.replace(PageEnum.LOGIN)
       } catch (error) {
