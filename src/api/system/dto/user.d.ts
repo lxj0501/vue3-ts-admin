@@ -4,6 +4,6 @@ interface LoginParams {
 }
 
 interface LoginResult {
-  username: string
+  userInfo: UserInfo
   token: string
 }

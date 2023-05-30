@@ -58,8 +58,6 @@ export const serviceHooks: ServiceHooks = {
     mergeConfig.url =
       (useMock ? VITE_MOCK_BASE : VITE_BASE_URL) + mergeConfig.url
 
-    console.log(mergeConfig)
-
     return mergeConfig
   },
   requestInterceptor(config) {

@@ -6,7 +6,7 @@ const { isMenuCollapse, toggleMenu } = useMenuSetting()
 
 <template>
   <div
-    class="h-[48px] flex items-center cursor-pointer px-[10px]"
+    class="h-[48px] flex items-center cursor-pointer px-[10px] hover:bg-[#f6f6f6]"
     @click="toggleMenu"
   >
     <MenuUnfoldOutlined v-if="isMenuCollapse" style="font-size: 16px" />

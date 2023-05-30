@@ -1,5 +1,5 @@
 import { TOKEN_KEY } from '@/constants/storageKey'
-import WebStorage from './cache'
+import WebStorage from './storage'
 
 export const getToken = () => {
   return WebStorage.get(TOKEN_KEY)
