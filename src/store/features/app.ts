@@ -1,11 +1,18 @@
+import projectSetting from '@/settings/projectSetting'
+import { getAppEnvConfig } from '@/utils/env'
 import { defineStore } from 'pinia'
+import store from '..'
 
 interface AppState {
+  projectSetting: ProjectSetting
+  appEnvConfig: GlobalEnvConfig
   menuSetting: MenuSetting
 }
 
 export const useAppStore = defineStore('app', {
   state: (): AppState => ({
+    projectSetting,
+    appEnvConfig: getAppEnvConfig(),
     menuSetting: { isCollapse: false }
   }),
 
@@ -20,3 +27,5 @@ export const useAppStore = defineStore('app', {
     }
   }
 })
+
+export const useAppStoreOut = () => useAppStore(store)

@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { useGlobalSetting } from '@/hooks/setting'
+import { useAppStore } from '@/store/features/app'
 import { useUserStore } from '@/store/features/user'
 import { Dropdown, Menu, MenuItem } from 'ant-design-vue'
 import { MenuClickEventHandler } from 'ant-design-vue/lib/menu/src/interface'
 const { userInfo, logout } = useUserStore()
 const {
-  userSetting: { defaultAvatar }
-} = useGlobalSetting()
+  projectSetting: {
+    userSetting: { defaultAvatar }
+  }
+} = useAppStore()
 
 const handleMenuClick: MenuClickEventHandler = (e) => {
   switch (e.key) {

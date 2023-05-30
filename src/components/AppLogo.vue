@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { useGlobalSetting } from '@/hooks/setting'
 import useMenuSetting from '@/hooks/setting/useMenuSetting'
+import { useAppStore } from '@/store/features/app'
 
 const {
-  appSetting: { title, logo }
-} = useGlobalSetting()
+  projectSetting: {
+    appSetting: { title, logo }
+  }
+} = useAppStore()
 const { isMenuCollapse } = useMenuSetting()
 </script>
 

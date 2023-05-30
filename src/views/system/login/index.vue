@@ -3,7 +3,7 @@ import { Input, Form, FormItem, InputPassword, Button } from 'ant-design-vue'
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
 import { reactive } from 'vue'
 import { useUserStore } from '@/store/features/user'
-import { useGlobalSetting } from '@/hooks/setting'
+import { useAppStore } from '@/store/features/app'
 
 interface LoginFormState {
   username: string
@@ -11,8 +11,10 @@ interface LoginFormState {
 }
 
 const {
-  appSetting: { title, logo }
-} = useGlobalSetting()
+  projectSetting: {
+    appSetting: { title, logo }
+  }
+} = useAppStore()
 
 const loginFormState = reactive<LoginFormState>({ username: '', password: '' })
 const userStore = useUserStore()
