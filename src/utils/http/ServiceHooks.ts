@@ -96,7 +96,6 @@ export const serviceHooks: ServiceHooks = {
     const { code, message: msg, result } = data
     const isSuccess = code === ResultCodeEnum.SUCCESS
     if (isSuccess) {
-      console.log('success')
       return result
     }
 

@@ -1,8 +1,9 @@
 import { getAppEnvConfig } from '@/utils/env'
+import projectSetting from '@/settings/projectSetting'
 
 export const useGlobalSetting = () => {
-  const { VITE_APP_TITLE } = getAppEnvConfig()
   return {
-    title: VITE_APP_TITLE
+    ...projectSetting,
+    ...getAppEnvConfig()
   }
 }

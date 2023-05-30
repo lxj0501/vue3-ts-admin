@@ -1,16 +1,17 @@
 <script setup lang="ts">
-import { useGlobalSetting } from '@/hooks/setting'
 import { Input, Form, FormItem, InputPassword, Button } from 'ant-design-vue'
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
 import { reactive } from 'vue'
 import { useUserStore } from '@/store/features/user'
+import { useGlobalSetting } from '@/hooks/setting'
 
 interface LoginFormState {
   username: string
   password: string
 }
 
-const { title } = useGlobalSetting()
+const { title, logo } = useGlobalSetting()
+
 const loginFormState = reactive<LoginFormState>({ username: '', password: '' })
 const userStore = useUserStore()
 
@@ -22,11 +23,7 @@ const onFinish = async (e: LoginFormState) => {
 <template>
   <div class="pt-[110px]">
     <div class="h-[44px] text-center leading-[44px] mb-[40px]">
-      <img
-        src="@/assets/images/vue.svg"
-        alt=""
-        class="inline h-[44px] mr-[16px] align-top"
-      />
+      <img :src="logo" alt="" class="inline h-[44px] mr-[16px] align-top" />
       <span class="text-[33px] font-[600] text-[rgba(0,0,0,0.88)]">
         {{ title }}
       </span>

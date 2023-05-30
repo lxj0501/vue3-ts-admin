@@ -8,3 +8,7 @@ export const getToken = () => {
 export const setToken = (token: string) => {
   return WebStorage.set(TOKEN_KEY, token)
 }
+
+export const removeToken = () => {
+  return WebStorage.remove(TOKEN_KEY)
+}

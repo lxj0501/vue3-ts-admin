@@ -33,6 +33,7 @@ export class WebStorage implements IWebStorage {
   }
 
   remove(key: string) {
+    key = this.mergeKey(key)
     this.storage.removeItem(key)
   }
 }

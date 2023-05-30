@@ -1,3 +1,5 @@
+import { useGlobalSetting } from '@/hooks/setting'
+
 export function getAppEnvConfig() {
   const envConfig = import.meta.env
   return {
@@ -7,8 +9,8 @@ export function getAppEnvConfig() {
 }
 
 export function getStoragePrefix() {
-  const { VITE_APP_TITLE, MODE } = getAppEnvConfig()
-  return `${VITE_APP_TITLE.replace(/\s/, '_')}__${MODE}__`
+  const { title, MODE } = useGlobalSetting()
+  return `${title.replace(/\s/, '_')}__${MODE}__`
 }
 
 export const isDev = () => import.meta.env.DEV

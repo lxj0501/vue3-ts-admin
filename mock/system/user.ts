@@ -34,5 +34,36 @@ export default [
         token
       })
     }
+  },
+  {
+    url: '/mock-api/getUserInfo',
+    method: 'get',
+    response: ({ headers }) => {
+      const user = fakeUserList.find(
+        (item) => item.token === headers.authorization
+      )
+      if (!user) {
+        return createErrorResult('无效 token！')
+      }
+      const { username, avatar } = user
+      return createSuccessResult({
+        username,
+        avatar
+      })
+    }
+  },
+  {
+    url: '/mock-api/logout',
+    method: 'get',
+    response: ({ headers }) => {
+      const user = fakeUserList.find(
+        (item) => item.token === headers.authorization
+      )
+      if (!user) {
+        return createErrorResult('无效 token！')
+      }
+
+      return createSuccessResult(undefined)
+    }
   }
 ] as MockMethod[]
