@@ -11,6 +11,9 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AppLogo: typeof import('./src/components/AppLogo.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    IconGithub: typeof import('./src/components/icons/IconGithub.vue')['default']
+    IconMoon: typeof import('./src/components/icons/IconMoon.vue')['default']
+    IconSun: typeof import('./src/components/icons/IconSun.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

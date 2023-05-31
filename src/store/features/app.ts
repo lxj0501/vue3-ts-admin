@@ -2,18 +2,21 @@ import projectSetting from '@/settings/projectSetting'
 import { getAppEnvConfig } from '@/utils/env'
 import { defineStore } from 'pinia'
 import store from '..'
+import { getTheme, toggleTheme } from '@/utils/theme'
 
 interface AppState {
   projectSetting: ProjectSetting
   appEnvConfig: GlobalEnvConfig
   menuSetting: MenuSetting
+  theme: ThemeType
 }
 
 export const useAppStore = defineStore('app', {
   state: (): AppState => ({
     projectSetting,
     appEnvConfig: getAppEnvConfig(),
-    menuSetting: { isCollapse: false }
+    menuSetting: { isCollapse: false },
+    theme: getTheme()
   }),
 
   getters: {
@@ -24,6 +27,10 @@ export const useAppStore = defineStore('app', {
   actions: {
     setMenuSetting(menuSetting: MenuSetting) {
       this.menuSetting = menuSetting
+    },
+    setTheme(value: boolean) {
+      this.theme = value ? 'light' : 'dark'
+      toggleTheme(this.theme)
     }
   }
 })

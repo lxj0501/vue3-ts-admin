@@ -1,6 +1,10 @@
 export const backgroundPalette: {
   [key in string]: { DEFAULT: string; dark: string }
 } = {
+  theme: {
+    DEFAULT: '#ffffff',
+    dark: '#1f2128'
+  },
   'primary-main': {
     DEFAULT: '#6C5DD3',
     dark: '#6C5DD3'

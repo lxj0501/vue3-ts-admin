@@ -7,6 +7,7 @@ interface ProjectSetting {
 interface AppSetting {
   title: string
   logo: string
+  github: string
 }
 
 interface UserSetting {

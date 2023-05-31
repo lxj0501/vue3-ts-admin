@@ -2,7 +2,11 @@ import logo from '@/assets/images/logo.svg'
 import avatar from '@/assets/images/default-avatar.png'
 
 const projectSetting: ProjectSetting = {
-  appSetting: { title: 'Vue3 Admin', logo },
+  appSetting: {
+    title: 'Vue3 Admin',
+    logo,
+    github: 'https://github.com/Luff-JM/vue3-ts-admin'
+  },
   userSetting: {
     defaultAvatar: avatar
   },
