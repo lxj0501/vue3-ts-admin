@@ -11,9 +11,15 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AppLogo: typeof import('./src/components/AppLogo.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    IconAlipay: typeof import('./src/components/icons/IconAlipay.vue')['default']
+    IconApple: typeof import('./src/components/icons/IconApple.vue')['default']
     IconGithub: typeof import('./src/components/icons/IconGithub.vue')['default']
+    IconGithubFill: typeof import('./src/components/icons/IconGithubFill.vue')['default']
+    IconGoogle: typeof import('./src/components/icons/IconGoogle.vue')['default']
     IconMoon: typeof import('./src/components/icons/IconMoon.vue')['default']
     IconSun: typeof import('./src/components/icons/IconSun.vue')['default']
+    IconTwitter: typeof import('./src/components/icons/IconTwitter.vue')['default']
+    IconWechat: typeof import('./src/components/icons/IconWechat.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
