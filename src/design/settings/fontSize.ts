@@ -17,6 +17,7 @@ const fontSize: ResolvableTo<
 > = {
   d1: ['96px', { fontWeight: 600, lineHeight: '120px' }],
   h3: ['40px', { fontWeight: 600, lineHeight: '60px' }],
+  title: ['16px', { fontWeight: 'bold', lineHeight: '20px' }],
   caption2: ['12px', { lineHeight: '16px' }]
 }
 
