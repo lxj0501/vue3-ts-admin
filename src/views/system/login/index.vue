@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { Input, Form, FormItem, InputPassword, Button } from 'ant-design-vue'
-import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
-import { reactive } from 'vue'
-import { useUserStore } from '@/store/features/user'
 import { useAppStore } from '@/store/features/app'
+import { useUserStore } from '@/store/features/user'
+import { Button, Form, FormItem, Input } from 'ant-design-vue'
+import { reactive } from 'vue'
 
 interface LoginFormState {
   username: string
@@ -25,59 +24,63 @@ const onFinish = async (e: LoginFormState) => {
 </script>
 
 <template>
-  <div class="pt-[110px]">
-    <div class="h-[44px] text-center leading-[44px] mb-[40px]">
-      <img :src="logo" alt="" class="inline h-[44px] mr-[16px] align-top" />
-      <span class="text-[33px] font-[600] text-[rgba(0,0,0,0.88)]">
-        {{ title }}
-      </span>
-    </div>
+  <div
+    class="h-full w-full pt-[96px] bg-center bg-no-repeat bg-cover md:bg-[url('/assets/images/background/bg-login.jpg')]"
+  >
+    <div class="pt-[40px] w-[310px] mx-auto">
+      <div class="h-[60px]">
+        <img :src="logo" alt="" class="inline h-[60px] mr-[16px] align-top" />
+        <span class="text-h3 text-primaryText dark:text-primaryText-dark">
+          {{ title }}
+        </span>
+      </div>
 
-    <div class="min-w-[260px] w-[368px] m-[0_auto]">
-      <Form :model="loginFormState" @finish="onFinish">
-        <FormItem
-          name="username"
-          :rules="[{ required: true, message: '请输入用户名' }]"
-        >
-          <Input
-            size="large"
-            style="border-radius: 8px"
-            placeholder="用户名"
-            v-model:value="loginFormState.username"
-          >
-            <template #prefix>
-              <UserOutlined class="!text-primary" />
-            </template>
-          </Input>
-        </FormItem>
+      <div class="mt-[42px]">
+        <Form :model="loginFormState" @finish="onFinish">
+          <div class="mb-[16px] text-caption2 text-captionText">用户名</div>
 
-        <FormItem
-          name="password"
-          :rules="[{ required: true, message: '请输入密码' }]"
-        >
-          <InputPassword
-            size="large"
-            style="border-radius: 8px"
-            placeholder="密码"
-            v-model:value="loginFormState.password"
+          <FormItem
+            class="mb-[24px]"
+            name="username"
+            :rules="[{ required: true, message: '请输入用户名' }]"
           >
-            <template #prefix>
-              <LockOutlined class="!text-primary" />
-            </template>
-          </InputPassword>
-        </FormItem>
+            <Input
+              size="large"
+              style="border-radius: 8px; height: 56px; border: none"
+              class="!bg-grey25 dark:!bg-grey10-dark"
+              v-model:value="loginFormState.username"
+            >
+            </Input>
+          </FormItem>
 
-        <FormItem>
-          <Button
-            class="w-full !rounded-[8px]"
-            size="large"
-            type="primary"
-            html-type="submit"
+          <div class="mb-[16px] text-caption2 text-captionText">密码</div>
+
+          <FormItem
+            class="mb-[24px]"
+            name="password"
+            :rules="[{ required: true, message: '请输入密码' }]"
           >
-            登录
-          </Button>
-        </FormItem>
-      </Form>
+            <Input
+              size="large"
+              style="border-radius: 8px; height: 56px; border: none"
+              class="!bg-grey25 dark:!bg-grey10-dark"
+              v-model:value="loginFormState.password"
+            >
+            </Input>
+          </FormItem>
+
+          <FormItem>
+            <Button
+              class="w-full !rounded-[16px] !h-[56px]"
+              size="large"
+              type="primary"
+              html-type="submit"
+            >
+              登录
+            </Button>
+          </FormItem>
+        </Form>
+      </div>
     </div>
   </div>
 </template>

@@ -1,0 +1,23 @@
+$bg-light: #ffffff;
+$bg-dark: #1f2128;
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background-color: $bg-light;
+}
+
+html.dark {
+  background-color: $bg-dark;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+  background-color: $bg-light;
+}
+
+.dark #app {
+  background-color: $bg-dark;
+}
