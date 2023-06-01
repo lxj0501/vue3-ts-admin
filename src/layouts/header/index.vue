@@ -6,8 +6,7 @@ import HeaderRight from './HeaderRight.vue'
 
 <template>
   <LayoutHeader
-    class="flex justify-between items-center"
-    style="padding: 0; background-color: white; height: 48px"
+    class="flex justify-between items-center !h-[70px] md:!h-[78px] !px-[32px] !bg-theme dark:!bg-theme-dark"
   >
     <HeaderLeft />
     <HeaderRight />

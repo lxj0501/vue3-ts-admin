@@ -13,12 +13,24 @@ export const backgroundPalette: {
     DEFAULT: '#FF754C',
     dark: '#FF754C'
   },
+  darkMain: {
+    DEFAULT: '#1B1D21',
+    dark: '#1B1D21'
+  },
   grey10: {
-    DEFAULT: '#32343A',
-    dark: '#32343A'
+    DEFAULT: 'rgba(228, 228, 228, 0.10)',
+    dark: 'rgba(228, 228, 228, 0.10)'
   },
   grey25: {
     DEFAULT: 'rgba(228, 228, 228, 0.25)',
     dark: 'rgba(228, 228, 228, 0.25)'
+  },
+  grey100: {
+    DEFAULT: '#E4E4E4',
+    dark: '#E4E4E4'
+  },
+  deactive: {
+    DEFAULT: '#808191',
+    dark: '#808191'
   }
 }

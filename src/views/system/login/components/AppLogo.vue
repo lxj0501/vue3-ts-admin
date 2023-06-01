@@ -1,15 +1,10 @@
 <script setup lang="ts">
-import IconSun from '@/components/icons/IconSun.vue'
-import IconMoon from '@/components/icons/IconMoon.vue'
-import IconGithub from '@/components/icons/IconGithub.vue'
-import { Switch } from 'ant-design-vue'
-import useTheme from '@/hooks/setting/useTheme'
 import { useAppStore } from '@/store/features/app'
+import MenuFooter from '@/components/MenuFooter.vue'
 
-const { isLight, toggleTheme } = useTheme()
 const {
   projectSetting: {
-    appSetting: { title, logo, github }
+    appSetting: { title, logo }
   }
 } = useAppStore()
 </script>
@@ -28,14 +23,7 @@ const {
         一个开箱即用的 vue3 脚手架
       </div>
 
-      <div class="w-[240px] mt-[52px] flex justify-between">
-        <IconSun v-if="isLight" class="stroke-[#7FBA7A] fill-[#7FBA7A]" />
-        <IconMoon v-else />
-        <Switch :checked="isLight" @click="toggleTheme"></Switch>
-        <a :href="github" target="_blank">
-          <IconGithub class="stroke-primaryText-dark" />
-        </a>
-      </div>
+      <MenuFooter class="w-[240px] mt-[52px]" />
     </div>
   </div>
 </template>

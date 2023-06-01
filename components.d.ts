@@ -20,6 +20,7 @@ declare module '@vue/runtime-core' {
     IconSun: typeof import('./src/components/icons/IconSun.vue')['default']
     IconTwitter: typeof import('./src/components/icons/IconTwitter.vue')['default']
     IconWechat: typeof import('./src/components/icons/IconWechat.vue')['default']
+    MenuFooter: typeof import('./src/components/MenuFooter.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

@@ -27,14 +27,13 @@ const handleLogout = () => {
 
 <template>
   <Dropdown>
-    <div class="flex items-center px-[10px] cursor-pointer hover:bg-[#f6f6f6]">
+    <div class="flex items-center cursor-pointer">
       <img
-        class="w-[30px] h-[30px]"
+        class="w-[40px] h-[40px]"
         :src="userInfo?.avatar ? userInfo?.avatar : defaultAvatar"
         alt=""
         srcset=""
       />
-      <div class="ml-[2px]">{{ userInfo?.username }}</div>
     </div>
     <template #overlay>
       <Menu @click="handleMenuClick">
