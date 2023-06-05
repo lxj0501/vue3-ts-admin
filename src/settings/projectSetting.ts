@@ -1,9 +1,10 @@
 import logo from '@/assets/images/logo.svg'
 import avatar from '@/assets/images/default-avatar.png'
+import { getAppEnvConfig } from '@/utils/env'
 
 const projectSetting: ProjectSetting = {
   appSetting: {
-    title: 'Vue3 Admin',
+    title: getAppEnvConfig().VITE_APP_TITLE,
     logo,
     github: 'https://github.com/Luff-JM/vue3-ts-admin'
   },

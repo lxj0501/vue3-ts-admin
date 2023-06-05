@@ -1,9 +1,14 @@
 import vue from '@vitejs/plugin-vue'
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
-import { ConfigEnv, PluginOption } from 'vite'
+import { ConfigEnv, PluginOption, loadEnv } from 'vite'
 import { viteMockServe } from 'vite-plugin-mock'
 import colorVariables from './plugins/colorVariables'
+import { createHtmlPlugin } from 'vite-plugin-html'
+
+const getViteEnv = (mode: string, target: string) => {
+  return loadEnv(mode, process.cwd())[target]
+}
 
 export const setupPlugins = (config: ConfigEnv): PluginOption[] => {
   const isBuild = config.command === 'build'
@@ -21,6 +26,13 @@ export const setupPlugins = (config: ConfigEnv): PluginOption[] => {
           import { setupProdMockServer } from '../mock/_createProductionServer';
           setupProdMockServer();
         `
+    }),
+    createHtmlPlugin({
+      inject: {
+        data: {
+          title: getViteEnv(config.mode, 'VITE_APP_TITLE')
+        }
+      }
     }),
     colorVariables()
   ]
