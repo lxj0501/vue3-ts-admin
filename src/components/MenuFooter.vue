@@ -25,7 +25,7 @@ const {
     <IconMoon v-else />
     <Switch :checked="isLight" @click="toggleTheme" />
     <a :href="github" target="_blank">
-      <IconGithub class="stroke-deactive" />
+      <IconGithub class="stroke-white" />
     </a>
   </div>
 </template>

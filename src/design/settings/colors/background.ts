@@ -7,6 +7,7 @@ export const backgroundPalette: {
   },
   'primary-main': {
     DEFAULT: '#6C5DD3',
+    // DEFAULT: colors.primary,
     dark: '#6C5DD3'
   },
   'accent02-shades-4': {

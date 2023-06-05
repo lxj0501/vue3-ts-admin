@@ -28,22 +28,22 @@ const onFinish = async (e: LoginFormState) => {
     ></div>
 
     <div
-      class="absolute w-full md:w-[464px] md:rounded-[40px] md:bg-theme dark:md:bg-[#242731]"
+      class="absolute w-full md:w-[464px] md:rounded-[40px] md:bg-theme-light dark:md:bg-[#242731]"
     >
       <div
         class="pt-[40px] w-[310px] md:pt-[48px] md:pb-[65px] md:w-[363px] mx-auto"
       >
-        <div class="text-h3 text-primaryText dark:text-primaryText-dark">
+        <div class="text-h3 text-text-color dark:text-text-color-inverse">
           登录
         </div>
 
         <div class="mt-[24px] flex">
-          <div class="text-caption2 text-captionText">没有账号?</div>
-          <div class="text-caption2 text-primary-main ml-[43px]">创建账号</div>
+          <div class="text-caption2 text-caption-color">没有账号?</div>
+          <div class="text-caption2 text-primary-color ml-[43px]">创建账号</div>
         </div>
 
         <Form :model="loginFormState" @finish="onFinish">
-          <div class="mt-[42px] mb-[16px] text-caption2 text-captionText">
+          <div class="mt-[42px] mb-[16px] text-caption2 text-caption-color">
             用户名
           </div>
 
@@ -55,13 +55,13 @@ const onFinish = async (e: LoginFormState) => {
             <Input
               size="large"
               style="border-radius: 8px; height: 56px; border: none"
-              class="!bg-grey25 dark:!bg-grey10-dark text-primaryText dark:text-primaryText-dark"
+              class="!bg-[rgba(228,228,228,0.25)] dark:!bg-[rgba(228,228,228,0.10)] text-text-color dark:text-text-color-inverse"
               v-model:value="loginFormState.username"
             >
             </Input>
           </FormItem>
 
-          <div class="mb-[16px] text-caption2 text-captionText">密码</div>
+          <div class="mb-[16px] text-caption2 text-caption-color">密码</div>
 
           <FormItem
             class="mb-[24px]"
@@ -72,7 +72,7 @@ const onFinish = async (e: LoginFormState) => {
               size="large"
               style="border-radius: 8px; height: 56px; border: none"
               type="password"
-              class="!bg-grey25 dark:!bg-grey10-dark text-primaryText dark:text-primaryText-dark"
+              class="!bg-[rgba(228,228,228,0.25)] dark:!bg-[rgba(228,228,228,0.10)] text-text-color dark:text-text-color-inverse"
               v-model:value="loginFormState.password"
             >
             </Input>
@@ -90,23 +90,23 @@ const onFinish = async (e: LoginFormState) => {
           </FormItem>
         </Form>
 
-        <div class="mt-[24px] text-caption2 text-captionText">其他方式</div>
+        <div class="mt-[24px] text-caption2 text-caption-color">其他方式</div>
 
         <div class="mt-[24px] h-[56px] flex justify-around">
           <IconGithubFill
-            class="fill-captionText cursor-pointer hover:fill-primary-main"
+            class="fill-caption-color cursor-pointer hover:fill-primary-color"
           />
           <IconAlipay
-            class="fill-captionText cursor-pointer hover:fill-primary-main"
+            class="fill-caption-color cursor-pointer hover:fill-primary-color"
           />
           <IconTwitter
-            class="fill-captionText stroke-captionText cursor-pointer hover:fill-primary-main hover:stroke-primary-main"
+            class="fill-caption-color stroke-caption-color cursor-pointer hover:fill-primary-color hover:stroke-primary-color"
           />
           <IconApple
-            class="fill-captionText stroke-captionText cursor-pointer hover:fill-primary-main hover:stroke-primary-main"
+            class="fill-caption-color stroke-caption-color cursor-pointer hover:fill-primary-color hover:stroke-primary-color"
           />
           <IconGoogle
-            class="fill-captionText cursor-pointer hover:fill-primary-main"
+            class="fill-caption-color cursor-pointer hover:fill-primary-color"
           />
         </div>
       </div>

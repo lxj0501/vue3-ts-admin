@@ -14,12 +14,12 @@ const {
     <div class="mr-[256px] flex flex-col items-center">
       <div class="h-[60px]">
         <img :src="logo" alt="" class="inline h-[60px] mr-[16px] align-top" />
-        <span class="text-h3 text-primaryText-dark">
+        <span class="text-h3 text-text-color-inverse">
           {{ title }}
         </span>
       </div>
 
-      <div class="text-title text-primaryText-dark mt-[28px]">
+      <div class="text-title text-text-color-inverse mt-[28px]">
         一个开箱即用的 vue3 脚手架
       </div>
 

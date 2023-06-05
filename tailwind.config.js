@@ -1,4 +1,5 @@
-import * as design from './src/design/settings'
+import colors from './src/design/variables/tailwindExtendColors.g'
+import fontSize from './src/design/variables/fontSize'
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -10,7 +11,8 @@ export default {
   },
   theme: {
     extend: {
-      ...design
+      colors,
+      fontSize
     }
   },
   plugins: []
