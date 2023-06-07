@@ -11,7 +11,7 @@ const { isMenuCollapse } = useMenuSetting()
     :collapsed="isMenuCollapse"
     width="256px"
     collapsed-width="96px"
-    class="hidden md:block !bg-theme dark:!bg-theme-dark shadow-[1px_0_0_0] shadow-grey100 dark:shadow-grey10"
+    class="hidden md:block !bg-theme-light dark:!bg-theme-dark shadow-[1px_0_0_0] shadow-[#E4E4E4] dark:shadow-[rgba(228,228,228,0.10)]"
   >
     <div class="h-full flex flex-col justify-between">
       <AppLogo />

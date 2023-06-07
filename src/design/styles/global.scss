@@ -20,3 +20,7 @@ html.dark {
 .dark #app {
   background-color: $theme-dark;
 }
+
+* {
+  transition: all 0.2s;
+}

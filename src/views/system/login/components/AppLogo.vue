@@ -13,7 +13,7 @@ const {
   <div class="hidden lg:block">
     <div class="mr-[256px] flex flex-col items-center">
       <div class="h-[60px]">
-        <img :src="logo" alt="" class="inline h-[60px] mr-[16px] align-top" />
+        <img :src="logo" alt="" class="inline w-[60px] mr-[16px] align-top" />
         <span class="text-h3 text-text-color-inverse">
           {{ title }}
         </span>
