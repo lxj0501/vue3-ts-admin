@@ -1,10 +1,6 @@
 <script setup lang="ts">
-import {
-  AppstoreOutlined,
-  MailOutlined,
-  QqOutlined
-} from '@ant-design/icons-vue'
-import { Menu, MenuItem, MenuItemGroup, SubMenu } from 'ant-design-vue'
+import { AppstoreOutlined, MailOutlined } from '@ant-design/icons-vue'
+import { Menu, MenuItem, SubMenu } from 'ant-design-vue'
 import { Key } from 'ant-design-vue/lib/_util/type'
 import { ref } from 'vue'
 
