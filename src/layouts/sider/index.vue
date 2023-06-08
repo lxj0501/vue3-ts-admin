@@ -3,6 +3,7 @@ import { LayoutSider } from 'ant-design-vue'
 import AppLogo from '@/components/AppLogo.vue'
 import useMenuSetting from '@/hooks/setting/useMenuSetting'
 import MenuFooter from '@/components/MenuFooter.vue'
+import Menu from './components/Menu.vue'
 const { isMenuCollapse } = useMenuSetting()
 </script>
 
@@ -15,6 +16,7 @@ const { isMenuCollapse } = useMenuSetting()
   >
     <div class="h-full flex flex-col justify-between">
       <AppLogo />
+      <Menu />
       <MenuFooter
         class="w-full h-[72px] px-[40px]"
         :is-menu-collapse="isMenuCollapse"

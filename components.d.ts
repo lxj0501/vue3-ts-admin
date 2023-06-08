@@ -9,6 +9,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AMenuItem: typeof import('ant-design-vue/es')['MenuItem']
     AppLogo: typeof import('./src/components/AppLogo.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     IconAlipay: typeof import('./src/components/icons/IconAlipay.vue')['default']
