@@ -38,9 +38,11 @@ const onSelect: SelectEventHandler = (value) => {
       :class="{ active: openKey === item.key }"
     >
       <template #icon>
-        <component
-          :is="openKey === item.key ? item.activeIcon : item.deactiveIcon"
-        />
+        <div>
+          <component
+            :is="openKey === item.key ? item.activeIcon : item.deactiveIcon"
+          />
+        </div>
       </template>
 
       <template #title>
@@ -60,6 +62,10 @@ const onSelect: SelectEventHandler = (value) => {
 ::v-deep(.ant-menu-title-content) {
   color: #808191;
   font-weight: bold;
+
+  &:hover {
+    color: $primary-color;
+  }
 }
 
 .dark .sider ::v-deep(.ant-menu-title-content) {
@@ -94,12 +100,11 @@ const onSelect: SelectEventHandler = (value) => {
 }
 
 ::v-deep(.ant-menu-submenu-title) {
-  padding-left: 40px !important;
-  padding-right: 45px;
+  background-color: transparent !important;
 }
 
-::v-deep(.ant-menu-submenu-arrow) {
-  right: 45px;
+.ant-menu.ant-menu-inline-collapsed.sider ::v-deep(.ant-menu-submenu-title) {
+  padding: 0 calc(50% - 10px);
 }
 
 ::v-deep(.ant-menu-title-content) {
@@ -108,5 +113,23 @@ const onSelect: SelectEventHandler = (value) => {
 
 ::v-deep(.ant-menu-item .ant-menu-title-content) {
   margin-left: 32px !important;
+}
+
+::v-deep(.ant-menu-submenu-title) {
+  margin: 0 !important;
+  display: flex;
+  align-items: center;
+}
+
+::v-deep(.ant-menu-item-selected) {
+  background: transparent !important;
+}
+
+::v-deep(.ant-menu-item) {
+  background: transparent !important;
+}
+
+::v-deep(.ant-menu-item-selected .ant-menu-title-content) {
+  color: $primary-color;
 }
 </style>
