@@ -11,9 +11,13 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AMenuItem: typeof import('ant-design-vue/es')['MenuItem']
     AppLogo: typeof import('./src/components/AppLogo.vue')['default']
+    copy: typeof import('./src/components/icons/IconChart copy.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     IconAlipay: typeof import('./src/components/icons/IconAlipay.vue')['default']
     IconApple: typeof import('./src/components/icons/IconApple.vue')['default']
+    IconChart: typeof import('./src/components/icons/IconChart.vue')['default']
+    IconChartFill: typeof import('./src/components/icons/IconChartFill.vue')['default']
+    IconDisplay: typeof import('./src/components/icons/IconDisplay.vue')['default']
     IconGithub: typeof import('./src/components/icons/IconGithub.vue')['default']
     IconGithubFill: typeof import('./src/components/icons/IconGithubFill.vue')['default']
     IconGoogle: typeof import('./src/components/icons/IconGoogle.vue')['default']

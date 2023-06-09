@@ -1,13 +1,26 @@
 <script setup lang="ts">
-import { AppstoreOutlined, MailOutlined } from '@ant-design/icons-vue'
-import { Menu, MenuItem, SubMenu } from 'ant-design-vue'
+import { Menu, SubMenu, MenuItem } from 'ant-design-vue'
 import { Key } from 'ant-design-vue/lib/_util/type'
+import { SelectEventHandler } from 'ant-design-vue/lib/menu/src/interface'
 import { ref } from 'vue'
 
+const props = defineProps<{
+  items: {
+    key: Key
+    title: string
+    activeIcon: any
+    deactiveIcon: any
+    subItems: { key: Key; title: string }[]
+  }[]
+}>()
 const openKey = ref<Key>('')
 
 const onOpenChange = (keys: Key[]) => {
   openKey.value = keys.length ? keys[keys.length - 1] : ''
+}
+
+const onSelect: SelectEventHandler = (value) => {
+  console.log(value)
 }
 </script>
 
@@ -15,30 +28,35 @@ const onOpenChange = (keys: Key[]) => {
   <Menu
     mode="inline"
     @openChange="onOpenChange"
+    @select="onSelect"
     :openKeys="[openKey]"
-    class="sider"
+    class="sider !border-none"
   >
-    <SubMenu key="sub1">
+    <SubMenu
+      v-for="item in props.items"
+      :key="item.key"
+      :class="{ active: openKey === item.key }"
+    >
       <template #icon>
-        <MailOutlined />
+        <component
+          :is="openKey === item.key ? item.activeIcon : item.deactiveIcon"
+        />
       </template>
-      <template #title> Navigation One </template>
 
-      <MenuItem key="1">Option 1</MenuItem>
-      <MenuItem key="2">Option 2</MenuItem>
-    </SubMenu>
-    <SubMenu key="sub2">
-      <template #icon>
-        <AppstoreOutlined />
+      <template #title>
+        <span class="sub-menu"> {{ item.title }} </span>
       </template>
-      <template #title>Navigation Two</template>
-      <MenuItem key="5">Option 5</MenuItem>
-      <MenuItem key="6">Option 6</MenuItem>
+
+      <MenuItem v-for="subItem in item.subItems" :key="subItem.key">
+        {{ subItem.title }}
+      </MenuItem>
     </SubMenu>
   </Menu>
 </template>
 
 <style lang="scss" scoped>
+@import '@/design/variables/colors.scss';
+
 ::v-deep(.ant-menu-title-content) {
   color: #808191;
   font-weight: bold;
@@ -47,5 +65,48 @@ const onOpenChange = (keys: Key[]) => {
 .dark .sider ::v-deep(.ant-menu-title-content) {
   color: #66676a;
   font-weight: bold;
+}
+
+.active .sub-menu {
+  color: $text-color;
+}
+
+.dark .active .sub-menu {
+  color: $text-color-inverse;
+}
+
+.sider.ant-menu {
+  background-color: $theme-light;
+  transition: background-color 0.2s !important;
+}
+
+.dark .sider.ant-menu {
+  background-color: $theme-dark;
+}
+
+.sider ::v-deep(.ant-menu-sub.ant-menu-inline) {
+  background-color: $theme-light;
+  transition: background-color 0.2s;
+}
+
+.dark .sider ::v-deep(.ant-menu-sub.ant-menu-inline) {
+  background-color: $theme-dark;
+}
+
+::v-deep(.ant-menu-submenu-title) {
+  padding-left: 40px !important;
+  padding-right: 45px;
+}
+
+::v-deep(.ant-menu-submenu-arrow) {
+  right: 45px;
+}
+
+::v-deep(.ant-menu-title-content) {
+  margin-left: 20px !important;
+}
+
+::v-deep(.ant-menu-item .ant-menu-title-content) {
+  margin-left: 32px !important;
 }
 </style>
