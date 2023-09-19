@@ -1,9 +1,11 @@
-interface LoginParams {
+import type { UserInfo } from '@/types/system'
+
+export interface LoginParams {
   username: string
   password: string
 }
 
-interface LoginResult {
+export interface LoginResult {
   userInfo: UserInfo
   token: string
 }

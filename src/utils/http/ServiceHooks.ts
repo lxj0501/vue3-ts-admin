@@ -4,6 +4,8 @@ import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { getToken } from '../auth'
 import { getAppEnvConfig } from '../env'
 import { ServiceConfig } from './Service'
+import type { Recordable } from '@/types/global'
+import type { RequestOptions, Result } from '@/types/http'
 
 export interface ServiceHooks {
   /**

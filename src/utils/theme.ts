@@ -1,3 +1,5 @@
+import type { ThemeType } from '@/types/system'
+
 export const getTheme = (): ThemeType => {
   toggleTheme('light')
   return 'light'

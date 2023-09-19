@@ -44,11 +44,9 @@ const onSelect: SelectEventHandler = (value) => {
           />
         </div>
       </template>
-
       <template #title>
         <span class="sub-menu"> {{ item.title }} </span>
       </template>
-
       <MenuItem v-for="subItem in item.subItems" :key="subItem.key">
         {{ subItem.title }}
       </MenuItem>

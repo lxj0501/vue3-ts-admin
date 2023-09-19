@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 import AppLogo from '@/components/AppLogo.vue'
 import MenuFooter from '@/components/MenuFooter.vue'
-import IconChart from '@/components/icons/IconChart.vue'
-import IconChartFill from '@/components/icons/IconChartFill.vue'
 import useMenuSetting from '@/hooks/setting/useMenuSetting'
 import { LayoutSider } from 'ant-design-vue'
 import Menu from './components/Menu.vue'
@@ -21,22 +19,22 @@ const { isMenuCollapse } = useMenuSetting()
         <AppLogo />
         <Menu
           :items="[
-            {
-              key: 'sub1',
-              title: 'Dashboard',
-              activeIcon: IconChartFill,
-              deactiveIcon: IconChart,
-              subItems: [
-                {
-                  key: '1',
-                  title: '选项一'
-                },
-                {
-                  key: '2',
-                  title: '选项二'
-                }
-              ]
-            }
+            // {
+            //   key: 'system',
+            //   name: 'Dashboard',
+            //   activeIcon: IconChartFill,
+            //   inactiveIcon: IconChart,
+            //   subItems: [
+            //     {
+            //       key: '1',
+            //       title: '选项一'
+            //     },
+            //     {
+            //       key: '2',
+            //       title: '选项二'
+            //     }
+            //   ]
+            // }
           ]"
         >
         </Menu>

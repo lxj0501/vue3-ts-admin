@@ -1,8 +1,12 @@
+import type { LoginParams } from '@/api/system/dto/user'
 import { API_GET_USER_INFO, API_LOGIN, API_LOGOUT } from '@/api/system/user'
 import { PageEnum } from '@/enums/pageEnum'
 import { router } from '@/router'
+import type { Nullable } from '@/types/global'
+import type { UserInfo } from '@/types/system'
 import { getToken, removeToken, setToken } from '@/utils/auth'
 import { isString } from '@/utils/is'
+import { generateDynamicRoutes } from '@/utils/router'
 import { defineStore } from 'pinia'
 
 interface UserState {
@@ -29,6 +33,9 @@ export const useUserStore = defineStore('user', {
         const { token, userInfo } = await API_LOGIN(loginParams)
         this.setToken(token)
         this.userInfo = userInfo
+
+        await generateDynamicRoutes()
+
         const redirect = router.currentRoute.value.query.redirect as any
         await router.replace(isString(redirect) ? redirect : PageEnum.HOME)
       } catch (error) {

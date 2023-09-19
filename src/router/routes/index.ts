@@ -1,5 +1,7 @@
 import type { RouteRecordRaw } from 'vue-router'
 import { LAYOUT } from '../constant'
+import { LoginRoute } from './static/loginRoute'
+import { EmptyStateRoute } from './static/emptyStateRoute'
 
 export const RootRoute: RouteRecordRaw = {
   path: '/',
@@ -7,10 +9,4 @@ export const RootRoute: RouteRecordRaw = {
   component: LAYOUT
 }
 
-export const LoginRoute: RouteRecordRaw = {
-  path: '/login',
-  name: 'Login',
-  component: () => import('@/views/system/login/index.vue')
-}
-
-export const basicRoutes = [LoginRoute, RootRoute]
+export const basicRoutes = [LoginRoute, RootRoute, EmptyStateRoute]

@@ -1,3 +1,5 @@
+import type { GlobalEnvConfig } from '@/types/config'
+
 export function getAppEnvConfig() {
   const envConfig = import.meta.env
   return {

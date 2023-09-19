@@ -9,7 +9,9 @@ import LayoutHeader from './header/index.vue'
     <LayoutSider />
     <Layout>
       <LayoutHeader />
-      <LayoutContent>content</LayoutContent>
+      <LayoutContent>
+        <RouterView />
+      </LayoutContent>
     </Layout>
   </Layout>
 </template>

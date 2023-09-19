@@ -6,13 +6,11 @@ const fakeUserList = [
     username: 'admin',
     avatar: '',
     password: 'admin',
-    token: 'token1'
-  },
-  {
-    username: 'user1',
-    avatar: '',
-    password: '123456',
-    token: 'token2'
+    token: 'token1',
+    role: 'admin',
+    permission: {
+      system: { space: 0, code: 0b0101 }
+    }
   }
 ]
 
@@ -28,9 +26,9 @@ export default [
       if (!user) {
         return createErrorResult('账号或密码错误！')
       }
-      const { username: _username, avatar, token } = user
+      const { username: _username, avatar, token, permission } = user
       return createSuccessResult({
-        userInfo: { username: _username, avatar },
+        userInfo: { username: _username, avatar, permission },
         token
       })
     }
@@ -45,10 +43,11 @@ export default [
       if (!user) {
         return createErrorResult('无效 token！')
       }
-      const { username, avatar } = user
+      const { username, avatar, permission } = user
       return createSuccessResult({
         username,
-        avatar
+        avatar,
+        permission
       })
     }
   },

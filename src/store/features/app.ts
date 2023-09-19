@@ -3,6 +3,9 @@ import { getAppEnvConfig } from '@/utils/env'
 import { defineStore } from 'pinia'
 import store from '..'
 import { getTheme, toggleTheme } from '@/utils/theme'
+import type { GlobalEnvConfig, MenuSetting } from '@/types/config'
+import type { ProjectSetting } from '@/types/setting'
+import type { ThemeType } from '@/types/system'
 
 interface AppState {
   projectSetting: ProjectSetting

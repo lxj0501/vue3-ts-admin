@@ -6,6 +6,7 @@ import axios, {
   InternalAxiosRequestConfig
 } from 'axios'
 import { ServiceHooks } from './ServiceHooks'
+import type { RequestOptions, Result } from '@/types/http'
 
 export interface ServiceConfig extends CreateAxiosDefaults {
   serviceHooks: ServiceHooks

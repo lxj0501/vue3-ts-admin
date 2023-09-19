@@ -1,6 +1,7 @@
 import logo from '@/assets/images/logo.svg'
 import avatar from '@/assets/images/default-avatar.png'
 import { getAppEnvConfig } from '@/utils/env'
+import type { ProjectSetting } from '@/types/setting'
 
 const projectSetting: ProjectSetting = {
   appSetting: {
