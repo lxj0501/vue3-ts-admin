@@ -9,7 +9,21 @@ const fakeUserList = [
     token: 'token1',
     role: 'admin',
     permission: {
-      system: { space: 0, code: 0b0101 }
+      // system: { space: 0, code: 0b0101 }
+      menuList: [
+        {
+          id: 1,
+          parentId: null,
+          path: 'system',
+          name: '系统'
+        },
+        {
+          id: 2,
+          parentId: 1,
+          path: 'permission',
+          name: '权限管理'
+        }
+      ]
     }
   }
 ]
@@ -28,8 +42,9 @@ export default [
       }
       const { username: _username, avatar, token, permission } = user
       return createSuccessResult({
-        userInfo: { username: _username, avatar, permission },
-        token
+        userInfo: { username: _username, avatar },
+        token,
+        permission
       })
     }
   },
@@ -43,11 +58,26 @@ export default [
       if (!user) {
         return createErrorResult('无效 token！')
       }
-      const { username, avatar, permission } = user
+      const { username, avatar } = user
       return createSuccessResult({
         username,
-        avatar,
-        permission
+        avatar
+      })
+    }
+  },
+  {
+    url: '/mock-api/permission',
+    method: 'get',
+    response: ({ headers }) => {
+      const user = fakeUserList.find(
+        (item) => item.token === headers.authorization
+      )
+      if (!user) {
+        return createErrorResult('无效 token！')
+      }
+      const { permission } = user
+      return createSuccessResult({
+        ...permission
       })
     }
   },

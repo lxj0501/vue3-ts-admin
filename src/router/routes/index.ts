@@ -9,4 +9,4 @@ export const RootRoute: RouteRecordRaw = {
   component: LAYOUT
 }
 
-export const basicRoutes = [LoginRoute, RootRoute, EmptyStateRoute]
+export const basicRoutes = [LoginRoute, EmptyStateRoute]

@@ -4,7 +4,9 @@ import MenuFooter from '@/components/MenuFooter.vue'
 import useMenuSetting from '@/hooks/setting/useMenuSetting'
 import { LayoutSider } from 'ant-design-vue'
 import Menu from './components/Menu.vue'
+import { useUserStore } from '@/store/features/user'
 const { isMenuCollapse } = useMenuSetting()
+const { menuList } = useUserStore()
 </script>
 
 <template>
@@ -17,27 +19,7 @@ const { isMenuCollapse } = useMenuSetting()
     <div class="h-full flex flex-col justify-between">
       <div class="flex-1">
         <AppLogo />
-        <Menu
-          :items="[
-            // {
-            //   key: 'system',
-            //   name: 'Dashboard',
-            //   activeIcon: IconChartFill,
-            //   inactiveIcon: IconChart,
-            //   subItems: [
-            //     {
-            //       key: '1',
-            //       title: '选项一'
-            //     },
-            //     {
-            //       key: '2',
-            //       title: '选项二'
-            //     }
-            //   ]
-            // }
-          ]"
-        >
-        </Menu>
+        <Menu :menus="menuList"> </Menu>
       </div>
 
       <MenuFooter

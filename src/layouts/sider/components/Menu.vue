@@ -3,15 +3,11 @@ import { Menu, SubMenu, MenuItem } from 'ant-design-vue'
 import { Key } from 'ant-design-vue/lib/_util/type'
 import { SelectEventHandler } from 'ant-design-vue/lib/menu/src/interface'
 import { ref } from 'vue'
+import { RouteRecordRaw, useRouter } from 'vue-router'
 
+const { push } = useRouter()
 const props = defineProps<{
-  items: {
-    key: Key
-    title: string
-    activeIcon: any
-    deactiveIcon: any
-    subItems: { key: Key; title: string }[]
-  }[]
+  menus: RouteRecordRaw[]
 }>()
 const openKey = ref<Key>('')
 
@@ -20,7 +16,7 @@ const onOpenChange = (keys: Key[]) => {
 }
 
 const onSelect: SelectEventHandler = (value) => {
-  console.log(value)
+  push({ name: value.key.toString() })
 }
 </script>
 
@@ -33,22 +29,26 @@ const onSelect: SelectEventHandler = (value) => {
     class="sider !border-none"
   >
     <SubMenu
-      v-for="item in props.items"
-      :key="item.key"
-      :class="{ active: openKey === item.key }"
+      v-for="item in props.menus"
+      :key="item.name"
+      :class="{ active: openKey === item.name }"
     >
       <template #icon>
         <div>
           <component
-            :is="openKey === item.key ? item.activeIcon : item.deactiveIcon"
+            :is="
+              openKey === item.name
+                ? item.meta?.activeIcon
+                : item.meta?.deactiveIcon
+            "
           />
         </div>
       </template>
       <template #title>
-        <span class="sub-menu"> {{ item.title }} </span>
+        <span class="sub-menu"> {{ item.meta?.name }} </span>
       </template>
-      <MenuItem v-for="subItem in item.subItems" :key="subItem.key">
-        {{ subItem.title }}
+      <MenuItem v-for="subItem in item.children" :key="subItem.name">
+        {{ subItem.meta?.name }}
       </MenuItem>
     </SubMenu>
   </Menu>

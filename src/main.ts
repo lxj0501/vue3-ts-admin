@@ -1,9 +1,8 @@
+import { setupDesign } from '@/design/index'
 import { createApp } from 'vue'
 import App from './App.vue'
-import { router, setupRouter } from './router'
-import { setupRouterGuard } from './router/guard'
+import { setupRouter } from './router'
 import { setupStore } from './store'
-import { setupDesign } from '@/design/index'
 
 function bootstrap() {
   const app = createApp(App)
@@ -15,9 +14,6 @@ function bootstrap() {
 
   // 配置路由
   setupRouter(app)
-
-  // 路由守卫
-  setupRouterGuard(router)
 
   app.mount('#app')
 }

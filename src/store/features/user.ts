@@ -1,22 +1,31 @@
 import type { LoginParams } from '@/api/system/dto/user'
-import { API_GET_USER_INFO, API_LOGIN, API_LOGOUT } from '@/api/system/user'
+import {
+  API_GET_USER_INFO,
+  API_GET_USER_PERM,
+  API_LOGIN,
+  API_LOGOUT
+} from '@/api/system/user'
 import { PageEnum } from '@/enums/pageEnum'
 import { router } from '@/router'
 import type { Nullable } from '@/types/global'
 import type { UserInfo } from '@/types/system'
 import { getToken, removeToken, setToken } from '@/utils/auth'
 import { isString } from '@/utils/is'
-import { generateDynamicRoutes } from '@/utils/router'
 import { defineStore } from 'pinia'
+import { MenuPerm } from '@/types/permission'
+import { generateDynamicRoutes } from '@/utils/router'
+import { RouteRecordRaw } from 'vue-router'
 
 interface UserState {
   userInfo: Nullable<UserInfo>
   token: Nullable<string>
+  menuList: RouteRecordRaw[]
 }
 
 export const useUserStore = defineStore('user', {
   state: (): UserState => ({
     userInfo: null,
+    menuList: [],
     token: getToken()
   }),
   actions: {
@@ -30,11 +39,10 @@ export const useUserStore = defineStore('user', {
     },
     async login(loginParams: LoginParams) {
       try {
-        const { token, userInfo } = await API_LOGIN(loginParams)
+        const { token, userInfo, permission } = await API_LOGIN(loginParams)
         this.setToken(token)
         this.userInfo = userInfo
-
-        await generateDynamicRoutes()
+        this.setMenuList(permission.menuList)
 
         const redirect = router.currentRoute.value.query.redirect as any
         await router.replace(isString(redirect) ? redirect : PageEnum.HOME)
@@ -42,12 +50,21 @@ export const useUserStore = defineStore('user', {
         return Promise.reject(error)
       }
     },
+    setMenuList(menuList: MenuPerm[]) {
+      this.menuList = generateDynamicRoutes(menuList)
+    },
     async getUserInfoAction() {
-      try {
-        const userInfo = await API_GET_USER_INFO()
-        this.userInfo = userInfo
-      } catch (error) {
-        return Promise.reject(error)
+      if (!this.userInfo) {
+        try {
+          const [userInfo, permInfo] = await Promise.all([
+            API_GET_USER_INFO(),
+            API_GET_USER_PERM()
+          ])
+          this.userInfo = userInfo
+          this.setMenuList(permInfo.menuList)
+        } catch (error) {
+          return void 0
+        }
       }
     },
     async logout() {

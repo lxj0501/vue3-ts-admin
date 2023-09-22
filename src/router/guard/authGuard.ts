@@ -2,11 +2,10 @@ import { PageEnum } from '@/enums/pageEnum'
 import { useUserStore } from '@/store/features/user'
 import { Router } from 'vue-router'
 
-export const createPermissionGuard = (router: Router) => {
+export const createAuthGuard = (router: Router) => {
   const userStore = useUserStore()
-  router.beforeEach((to, _, next) => {
+  router.beforeEach(async (to, _, next) => {
     const token = userStore.token
-    console.log(token)
 
     if (!token) {
       if (to.path === PageEnum.LOGIN) {
@@ -22,7 +21,12 @@ export const createPermissionGuard = (router: Router) => {
       return
     }
 
-    userStore.getUserInfoAction()
-    next()
+    await userStore.getUserInfoAction()
+    const hasRoute = router.hasRoute(to.name ?? '')
+    if (!hasRoute) {
+      next({ ...to, replace: true })
+    } else {
+      next()
+    }
   })
 }

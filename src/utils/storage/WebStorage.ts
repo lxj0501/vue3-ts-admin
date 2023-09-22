@@ -25,7 +25,7 @@ export class WebStorage implements IWebStorage {
     return (this.prefix + key).toUpperCase()
   }
 
-  get(key: string, def: any = null): any {
+  get<T = any>(key: string, def: any = null): T {
     const value = this.storage.getItem(this.mergeKey(key))
     if (value) {
       try {

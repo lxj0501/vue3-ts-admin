@@ -1,3 +1,4 @@
+import { PermInfo } from '@/types/permission'
 import type { UserInfo } from '@/types/system'
 
 export interface LoginParams {
@@ -8,4 +9,5 @@ export interface LoginParams {
 export interface LoginResult {
   userInfo: UserInfo
   token: string
+  permission: PermInfo
 }

@@ -1,6 +1,6 @@
 import { Router } from 'vue-router'
-import { createPermissionGuard } from './permissionGuard'
+import { createAuthGuard } from './authGuard'
 
 export const setupRouterGuard = (router: Router) => {
-  createPermissionGuard(router)
+  createAuthGuard(router)
 }

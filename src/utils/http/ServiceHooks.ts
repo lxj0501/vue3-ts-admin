@@ -52,7 +52,11 @@ export const serviceHooks: ServiceHooks = {
     config: AxiosRequestConfig,
     options: RequestOptions
   ) {
-    const mergeConfig = { ...serviceConfig, ...config, ...options }
+    const mergeConfig = {
+      ...serviceConfig,
+      requestOptions: { ...serviceConfig.requestOptions, ...options },
+      ...config
+    }
     const { VITE_BASE_URL, VITE_MOCK_BASE } = getAppEnvConfig()
     const {
       requestOptions: { useMock }

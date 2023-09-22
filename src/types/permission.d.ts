@@ -1,12 +1,10 @@
-export interface Permission {
-  id: number | string
-  name: string
-  parentId: number | string
-  route: string
+export interface PermInfo {
+  menuList: MenuPerm[]
 }
 
-export interface MenuItem {
-  icon?: string
+export interface MenuPerm {
+  id: number | string
   name: string
+  parentId: number | string | undefined
   path: string
 }
