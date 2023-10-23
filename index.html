@@ -27,15 +27,19 @@
           background-color: #f4f7f9;
         }
 
-        .app-loading .app-loading-wrap {
+        .app-info {
           display: flex;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          flex-direction: column;
           align-items: center;
-          justify-content: center;
-          transform: translate3d(-50%, -50%, 0);
+        }
+
+        .app-loading-logo {
+          width: 70px;
+          margin-right: 10px;
+        }
+
+        .app-loading-title {
+          color: rgb(0 0 0 / 85%);
+          font-size: 30px;
         }
 
         .app-loading .dots {
@@ -45,23 +49,7 @@
           padding: 98px;
         }
 
-        .app-loading .app-loading-title {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-top: 30px;
-          color: rgb(0 0 0 / 85%);
-          font-size: 30px;
-        }
-
-        .app-loading .app-loading-logo {
-          display: block;
-          width: 90px;
-          margin: 0 auto;
-          margin-bottom: 20px;
-        }
-
-        .dot {
+        .app-loading .dot {
           display: inline-block;
           position: relative;
           box-sizing: border-box;
@@ -83,7 +71,7 @@
           animation: ant-spin-move 1s infinite linear alternate;
           border-radius: 100%;
           opacity: 0.3;
-          background-color: #0065cc;
+          background-color: #8e4dff;
         }
 
         .dot i:nth-child(1) {
@@ -134,12 +122,13 @@
         }
       </style>
       <div class="app-loading">
-        <div class="app-loading-wrap">
+        <div class="app-info">
           <img src="/logo.svg" class="app-loading-logo" alt="Logo" />
-          <div class="app-loading-dots">
-            <span class="dot dot-spin"><i></i><i></i><i></i><i></i></span>
-          </div>
           <div class="app-loading-title"><%= VITE_APP_TITLE %></div>
+        </div>
+
+        <div class="app-loading-dots">
+          <span class="dot dot-spin"><i></i><i></i><i></i><i></i></span>
         </div>
       </div>
     </div>
