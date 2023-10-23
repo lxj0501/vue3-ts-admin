@@ -20,7 +20,7 @@ const {
       </div>
 
       <div class="text-title text-text-color-inverse mt-[28px]">
-        一个开箱即用的 vue3 脚手架
+        一个还可以的 Vue3 Admin 模板
       </div>
 
       <MenuFooter class="w-[240px] mt-[52px]" />
