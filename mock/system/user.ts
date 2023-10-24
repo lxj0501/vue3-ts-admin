@@ -32,7 +32,7 @@ export default [
   {
     url: '/mock-api/login',
     method: 'post',
-    response: async ({ body }) => {
+    response: ({ body }) => {
       const { username, password } = body
       const user = fakeUserList.find(
         (item) => item.username === username && item.password === password

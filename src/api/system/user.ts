@@ -1,8 +1,9 @@
+import { ErrorMsgType } from '@/types/http'
+import { PermInfo } from '@/types/permission'
+
 import { http } from '@/utils/http'
 import type { LoginParams, LoginResult } from './dto/user'
-import type { UserInfo } from '@/types/system'
-import { PermInfo } from '@/types/permission'
-import { ErrorMsgType } from '@/types/http'
+import { UserInfo } from '@/types/user'
 
 export const API_LOGIN = (
   loginParams: LoginParams,

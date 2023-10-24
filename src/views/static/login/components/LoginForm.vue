@@ -5,20 +5,26 @@ import IconTwitter from '@/components/icons/IconTwitter.vue'
 import IconApple from '@/components/icons/IconApple.vue'
 import IconGoogle from '@/components/icons/IconGoogle.vue'
 import { useUserStore } from '@/store/features/user'
-import { Button, Form, FormItem, Input, message } from 'ant-design-vue'
+import {
+  Button,
+  Checkbox,
+  Form,
+  FormItem,
+  Input,
+  message
+} from 'ant-design-vue'
 import { reactive, ref } from 'vue'
+import { LoginFormState } from '@/types/user'
+import { getLoginFormState, setLoginFormState } from '@/utils/user'
+import { CheckboxChangeEvent } from 'ant-design-vue/lib/checkbox/interface'
 
-interface LoginFormState {
-  username: string
-  password: string
-}
-
-const loginFormState = reactive<LoginFormState>({ username: '', password: '' })
+const loginFormState = reactive<LoginFormState>(getLoginFormState())
 const userStore = useUserStore()
 const isLoading = ref(false)
 
 const onFinish = async (e: LoginFormState) => {
   try {
+    setLoginFormState(loginFormState)
     isLoading.value = true
     await userStore.login(e, 'none')
   } catch (error) {
@@ -26,6 +32,10 @@ const onFinish = async (e: LoginFormState) => {
   } finally {
     isLoading.value = false
   }
+}
+
+const onRememberMeChange = (_: CheckboxChangeEvent) => {
+  setLoginFormState(loginFormState)
 }
 </script>
 
@@ -56,7 +66,6 @@ const onFinish = async (e: LoginFormState) => {
           </div>
 
           <FormItem
-            class="mb-[24px]"
             name="username"
             :rules="[{ required: true, message: '请输入用户名' }]"
           >
@@ -66,6 +75,7 @@ const onFinish = async (e: LoginFormState) => {
               class="!bg-[rgba(228,228,228,0.25)] dark:!bg-[rgba(228,228,228,0.10)] text-text-color dark:text-text-color-inverse"
               v-model:value="loginFormState.username"
               :disabled="isLoading"
+              autocomplete="off"
             >
             </Input>
           </FormItem>
@@ -73,22 +83,22 @@ const onFinish = async (e: LoginFormState) => {
           <div class="mb-[16px] text-caption2 text-caption-color">密码</div>
 
           <FormItem
-            class="mb-[24px]"
             name="password"
             :rules="[{ required: true, message: '请输入密码' }]"
           >
             <Input
               size="large"
               style="border-radius: 8px; height: 56px; border: none"
-              type="password"
-              class="!bg-[rgba(228,228,228,0.25)] dark:!bg-[rgba(228,228,228,0.10)] text-text-color dark:text-text-color-inverse"
+              type="text"
+              class="!bg-[rgba(228,228,228,0.25)] dark:!bg-[rgba(228,228,228,0.10)] text-text-color dark:text-text-color-inverse z-[999]"
               v-model:value="loginFormState.password"
               :disabled="isLoading"
+              autocomplete="new-password"
             >
             </Input>
           </FormItem>
 
-          <FormItem>
+          <FormItem style="margin-bottom: 10px">
             <Button
               class="w-full !rounded-[16px] !h-[56px]"
               size="large"
@@ -101,9 +111,15 @@ const onFinish = async (e: LoginFormState) => {
           </FormItem>
         </Form>
 
+        <Checkbox
+          @change="onRememberMeChange"
+          v-model:checked="loginFormState.rememberMe"
+          >记住我</Checkbox
+        >
+
         <div class="mt-[24px] text-caption2 text-caption-color">其他方式</div>
 
-        <div class="mt-[24px] h-[56px] flex justify-around">
+        <div class="mt-[24px] h-[24px] flex justify-around">
           <IconGithubFill
             class="fill-caption-color cursor-pointer hover:fill-primary-color"
           />

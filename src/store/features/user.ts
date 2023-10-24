@@ -8,7 +8,7 @@ import {
 import { PageEnum } from '@/enums/pageEnum'
 import { router } from '@/router'
 import type { Nullable } from '@/types/global'
-import type { UserInfo } from '@/types/system'
+
 import { getToken, removeToken, setToken } from '@/utils/auth'
 import { isString } from '@/utils/is'
 import { defineStore } from 'pinia'
@@ -17,6 +17,7 @@ import { generateDynamicRoutes } from '@/utils/router'
 import { RouteRecordRaw } from 'vue-router'
 import { ErrorMsgType } from '@/types/http'
 import { md5 } from '@/utils/crypto'
+import { UserInfo } from '@/types/user'
 
 interface UserState {
   userInfo: Nullable<UserInfo>

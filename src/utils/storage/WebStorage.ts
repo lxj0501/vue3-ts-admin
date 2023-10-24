@@ -1,3 +1,5 @@
+import { Nullable } from '@/types/global'
+
 interface CreateWebStorageOptions {
   storage: Storage
   prefix: string
@@ -5,7 +7,7 @@ interface CreateWebStorageOptions {
 }
 
 interface IWebStorage extends CreateWebStorageOptions {
-  get: (key: string) => string | null
+  get: <T>(key: string) => Nullable<T>
   set: (key: string, value: string) => void
   remove: (key: string) => void
 }
@@ -25,7 +27,7 @@ export class WebStorage implements IWebStorage {
     return (this.prefix + key).toUpperCase()
   }
 
-  get<T = any>(key: string, def: any = null): T {
+  get<T = any>(key: string, def: any = null): Nullable<T> {
     const value = this.storage.getItem(this.mergeKey(key))
     if (value) {
       try {
