@@ -78,6 +78,7 @@ export const serviceHooks: ServiceHooks = {
     return Promise.reject(error)
   },
   responseInterceptor(response) {
+    console.log(response)
     return response
   },
   responseInterceptorErrorCatch(error) {
@@ -104,6 +105,7 @@ export const serviceHooks: ServiceHooks = {
   },
   handleResponseHook(response, mergeConfig) {
     const { useNativeResponse, useHandledData } = mergeConfig.requestOptions
+    console.log(response)
     if (useNativeResponse) {
       return response
     }
@@ -115,7 +117,7 @@ export const serviceHooks: ServiceHooks = {
     const { data } = response
 
     if (!data) {
-      throw new Error('请求出错')
+      return Promise.reject('')
     }
 
     const { code, message: msg, result } = data

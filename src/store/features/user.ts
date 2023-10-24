@@ -16,6 +16,7 @@ import { MenuPerm } from '@/types/permission'
 import { generateDynamicRoutes } from '@/utils/router'
 import { RouteRecordRaw } from 'vue-router'
 import { ErrorMsgType } from '@/types/http'
+import { md5 } from '@/utils/crypto'
 
 interface UserState {
   userInfo: Nullable<UserInfo>
@@ -40,6 +41,7 @@ export const useUserStore = defineStore('user', {
     },
     async login(loginParams: LoginParams, errorMsgType: ErrorMsgType) {
       try {
+        loginParams.password = md5(loginParams.password, '12345')
         const { token, userInfo, permission } = await API_LOGIN(
           loginParams,
           errorMsgType
@@ -51,6 +53,7 @@ export const useUserStore = defineStore('user', {
         const redirect = router.currentRoute.value.query.redirect as any
         await router.replace(isString(redirect) ? redirect : PageEnum.HOME)
       } catch (error) {
+        console.log(error)
         return Promise.reject(error)
       }
     },

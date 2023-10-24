@@ -5,7 +5,7 @@ const fakeUserList = [
   {
     username: 'admin',
     avatar: '',
-    password: 'admin',
+    password: '7488e331b8b64e5794da3fa4eb10ad5d',
     token: 'token1',
     role: 'admin',
     permission: {
@@ -41,6 +41,7 @@ export default [
         return createErrorResult('账号或密码错误！')
       }
       const { username: _username, avatar, token, permission } = user
+      console.log(user)
       return createSuccessResult({
         userInfo: { username: _username, avatar },
         token,
