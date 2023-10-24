@@ -30,7 +30,7 @@ export const setupPlugins = (config: ConfigEnv): PluginOption[] => {
     createHtmlPlugin({
       inject: {
         data: {
-          APP_TITLE: getViteEnv(config.mode, 'VITE_APP_TITLE')
+          VITE_APP_TITLE: getViteEnv(config.mode, 'VITE_APP_TITLE')
         }
       }
     }),

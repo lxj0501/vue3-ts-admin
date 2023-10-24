@@ -1,11 +1,11 @@
 import { ResultCodeEnum } from '@/enums/httpEnum'
 import { message } from 'ant-design-vue'
-import { AxiosRequestConfig, AxiosResponse } from 'axios'
+import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { getToken } from '../auth'
 import { getAppEnvConfig } from '../env'
 import { ServiceConfig } from './Service'
 import type { Recordable } from '@/types/global'
-import type { RequestOptions, Result } from '@/types/http'
+import type { ErrorMsgType, RequestOptions, Result } from '@/types/http'
 
 export interface ServiceHooks {
   /**
@@ -35,7 +35,7 @@ export interface ServiceHooks {
   /**
    * @description: 响应拦截器错误处理
    */
-  responseInterceptorErrorCatch: (error: Error) => void
+  responseInterceptorErrorCatch: (error: AxiosError) => void
 
   /**
    * @description: 响应之后处理
@@ -81,7 +81,26 @@ export const serviceHooks: ServiceHooks = {
     return response
   },
   responseInterceptorErrorCatch(error) {
-    console.error('请求失败:', error)
+    const { code, message: msg, config } = error
+
+    const errorMsgType = (config as any).requestOptions
+      .errorMsgType as ErrorMsgType
+    let errorMsg = ''
+    if (code === 'ECONNABORTED' && msg.includes('timeout')) {
+      errorMsg = '请求超时'
+    }
+    if (code === 'ERR_NETWORK') {
+      errorMsg = '网络异常，请检查您的网络连接是否正常!'
+    }
+
+    if (!errorMsg) return Promise.reject(error)
+    if (errorMsgType === 'message') {
+      message.error(errorMsg)
+    } else if (errorMsgType === 'modal') {
+      console.log(123)
+    }
+
+    return Promise.reject(error)
   },
   handleResponseHook(response, mergeConfig) {
     const { useNativeResponse, useHandledData } = mergeConfig.requestOptions

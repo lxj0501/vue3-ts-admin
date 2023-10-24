@@ -5,8 +5,8 @@ import IconTwitter from '@/components/icons/IconTwitter.vue'
 import IconApple from '@/components/icons/IconApple.vue'
 import IconGoogle from '@/components/icons/IconGoogle.vue'
 import { useUserStore } from '@/store/features/user'
-import { Button, Form, FormItem, Input } from 'ant-design-vue'
-import { reactive } from 'vue'
+import { Button, Form, FormItem, Input, message } from 'ant-design-vue'
+import { reactive, ref } from 'vue'
 
 interface LoginFormState {
   username: string
@@ -15,9 +15,17 @@ interface LoginFormState {
 
 const loginFormState = reactive<LoginFormState>({ username: '', password: '' })
 const userStore = useUserStore()
+const isLoading = ref(false)
 
 const onFinish = async (e: LoginFormState) => {
-  await userStore.login(e)
+  try {
+    isLoading.value = true
+    await userStore.login(e, 'none')
+  } catch (error) {
+    message.error('登录失败！')
+  } finally {
+    isLoading.value = false
+  }
 }
 </script>
 
@@ -57,6 +65,7 @@ const onFinish = async (e: LoginFormState) => {
               style="border-radius: 8px; height: 56px; border: none"
               class="!bg-[rgba(228,228,228,0.25)] dark:!bg-[rgba(228,228,228,0.10)] text-text-color dark:text-text-color-inverse"
               v-model:value="loginFormState.username"
+              :disabled="isLoading"
             >
             </Input>
           </FormItem>
@@ -74,6 +83,7 @@ const onFinish = async (e: LoginFormState) => {
               type="password"
               class="!bg-[rgba(228,228,228,0.25)] dark:!bg-[rgba(228,228,228,0.10)] text-text-color dark:text-text-color-inverse"
               v-model:value="loginFormState.password"
+              :disabled="isLoading"
             >
             </Input>
           </FormItem>
@@ -84,6 +94,7 @@ const onFinish = async (e: LoginFormState) => {
               size="large"
               type="primary"
               html-type="submit"
+              :loading="isLoading"
             >
               登录
             </Button>

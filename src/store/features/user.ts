@@ -15,6 +15,7 @@ import { defineStore } from 'pinia'
 import { MenuPerm } from '@/types/permission'
 import { generateDynamicRoutes } from '@/utils/router'
 import { RouteRecordRaw } from 'vue-router'
+import { ErrorMsgType } from '@/types/http'
 
 interface UserState {
   userInfo: Nullable<UserInfo>
@@ -37,9 +38,12 @@ export const useUserStore = defineStore('user', {
       this.token = token
       token ? setToken(token) : removeToken()
     },
-    async login(loginParams: LoginParams) {
+    async login(loginParams: LoginParams, errorMsgType: ErrorMsgType) {
       try {
-        const { token, userInfo, permission } = await API_LOGIN(loginParams)
+        const { token, userInfo, permission } = await API_LOGIN(
+          loginParams,
+          errorMsgType
+        )
         this.setToken(token)
         this.userInfo = userInfo
         this.setMenuList(permission.menuList)

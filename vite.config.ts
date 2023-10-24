@@ -20,6 +20,13 @@ export default defineConfig((config) => {
     server: {
       watch: {
         ignored: ['**/*.g.ts']
+      },
+      proxy: {
+        '/api': {
+          target: 'http://localhost:3000',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(new RegExp(`^/api`), '')
+        }
       }
     }
   }

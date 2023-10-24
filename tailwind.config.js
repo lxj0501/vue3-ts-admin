@@ -15,5 +15,6 @@ export default {
       fontSize
     }
   },
-  plugins: []
+  plugins: [],
+  corePlugins: { preflight: false }
 }
